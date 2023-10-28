@@ -1,11 +1,23 @@
 export enum INPUTS {
-  authToken = 'authToken',
-  owner = 'owner',
-  repository = 'repository'
+    authToken = 'authToken',
+    prNumber = 'prNumber',
+    prefixes = 'prefixes',
+    delimiter = 'delimiter',
+    layers = 'layers',
+    basePaths = 'basePaths',
+    debugShowPaths = 'debugShowPaths',
+    skipLabels = 'skipLabels',
+    includedGlob = 'includedGlob'
 }
 
 export interface IInputs {
-  authToken: string
-  owner: string
-  repository: string
+    authToken: string;
+    prNumber: number;
+    prefixes: string;
+    delimiter: string;
+    layers: number;
+    basePaths: string;
+    debugShowPaths: boolean;
+    skipLabels: boolean;
+    includedGlob: string;
 }
