@@ -280,6 +280,9 @@ const core = __importStar(__nccwpck_require__(2186));
 const minimatch = __importStar(__nccwpck_require__(1953));
 const util_1 = __nccwpck_require__(3837);
 function getFilteredPaths(paths, includedGlob) {
+    if (!includedGlob) {
+        return paths;
+    }
     const filteredPaths = minimatch.match(paths, includedGlob, { matchBase: true });
     core.startGroup('📂Filtered File paths');
     core.debug(`filteredPaths: ${(0, util_1.inspect)(filteredPaths)}`);
