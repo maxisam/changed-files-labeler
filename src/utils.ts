@@ -3,6 +3,9 @@ import * as minimatch from 'minimatch';
 import { inspect } from 'util';
 
 export function getFilteredPaths(paths: string[], includedGlob: string): string[] {
+    if (!includedGlob) {
+        return paths;
+    }
     const filteredPaths = minimatch.match(paths, includedGlob, { matchBase: true });
     core.startGroup('📂Filtered File paths');
     core.debug(`filteredPaths: ${inspect(filteredPaths)}`);

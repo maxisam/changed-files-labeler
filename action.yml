@@ -16,14 +16,14 @@ inputs:
     description: The base path to match like path1|path2
     required: true
   prefixes:
-    description: Prefix to be used in label, like prefix1|prefix2 for 2 layers, prefix can also used for skipping label by setting it as skip and set "" will use the original label
+    description: Prefix to be used in label, like prefix1|prefix2 for 2 layers, prefix can also used for skipping label by setting it as skip and set "" will use the original label, empty string will use the original label
     required: false
   delimiter:
     description: Delimiter between prefix and label(e.g., space)
     default: ":"
     required: false
   includedGlob:
-    description: The file extensions to include to check for changed files
+    description: The file extensions to include to check for changed files, empty will skip filter step
     default: "**/*.{js,ts,jsx,tsx,go,py,java,swift,php,rb,cs,sh}"
     required: false
   layers:
