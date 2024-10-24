@@ -12,6 +12,10 @@ on:
     paths-ignore:
       - "**.md"
       - dist/**
+
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build
