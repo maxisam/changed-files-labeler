@@ -16,7 +16,7 @@ async function run(): Promise<void> {
         const tokenSets = getTokenSets(filteredPaths, pattern, inputs.layers, inputs.debugShowPaths);
         core.setOutput('paths', Array.from(tokenSets[0]));
         // only get sets for labels
-        const labels = getLabels(inputs.prefixes, inputs.delimiter, tokenSets.slice(1));
+        const labels = getLabels(inputs.prefixes, inputs.delimiter, tokenSets.slice(1), inputs.maxLabels);
         core.setOutput('labels', labels);
         if (!labels.length) {
             core.warning('No labels found');

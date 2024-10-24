@@ -28,15 +28,19 @@ inputs:
     required: false
   layers:
     description: The number of layers to use for the label
-    default: 1
+    default: "1"
     required: false
   debugShowPaths:
     description: Show all PR paths in debug mode
-    default: false
+    default: "false"
     required: false
   skipLabels:
     description: Don't push labels to github
-    default: false
+    default: "false"
+    required: false
+  maxLabels:
+    description: The maximum number of labels to add (GitHub limit is 100)
+    default: "40"
     required: false
 outputs:
   changed:

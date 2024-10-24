@@ -57,7 +57,7 @@ export function getTokenSets(filePaths: string[], pattern: string, layers: numbe
     return labelTokenSets;
 }
 
-export function getLabels(prefixes: string, delimiter: string, labelTokenSets: Set<string>[]): string[] {
+export function getLabels(prefixes: string, delimiter: string, labelTokenSets: Set<string>[], maxLabels: number): string[] {
     let prefixArray = labelTokenSets.map(() => '');
     if (prefixes !== '') {
         if (prefixArray.length !== labelTokenSets.length) {
@@ -77,5 +77,9 @@ export function getLabels(prefixes: string, delimiter: string, labelTokenSets: S
         const labelTokens = Array.from(labelTokenSet);
         return labelTokens.map(labelToken => `${prefix}${labelToken}`.trim());
     });
-    return labels.flat();
+    const allLabels = labels.flat();
+    core.startGroup('🏷️Labels');
+    core.debug(`labels: ${inspect(allLabels)}`);
+    core.endGroup();
+    return allLabels.slice(0, maxLabels);
 }
