@@ -1,18 +1,22 @@
 {
-  "printWidth": 150,
-  "tabWidth": 4,
-  "useTabs": false,
-  "semi": true,
-  "singleQuote": true,
-  "trailingComma": "none",
-  "bracketSpacing": true,
-  "arrowParens": "avoid",
-  "overrides": [
-    {
-      "files": "*.yml|*.yaml",
-      "options": {
-        "singleQuote": false,
-        "tabWidth": 2
-      }
-    }]
+    "printWidth": 150,
+    "tabWidth": 4,
+    "useTabs": false,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "none",
+    "bracketSpacing": true,
+    "arrowParens": "avoid",
+    "typescript": {
+        "no-unnecessary-type-assertion": false
+    },
+    "overrides": [
+        {
+            "files": "*.yml|*.yaml",
+            "options": {
+                "singleQuote": false,
+                "tabWidth": 2
+            }
+        }
+    ]
 }

@@ -7,7 +7,8 @@ export enum INPUTS {
     basePaths = 'basePaths',
     debugShowPaths = 'debugShowPaths',
     skipLabels = 'skipLabels',
-    includedGlob = 'includedGlob'
+    includedGlob = 'includedGlob',
+    maxLabels= 'maxLabels'
 }
 
 export interface IInputs {
@@ -20,4 +21,5 @@ export interface IInputs {
     debugShowPaths: boolean;
     skipLabels: boolean;
     includedGlob: string;
+    maxLabels: number;
 }

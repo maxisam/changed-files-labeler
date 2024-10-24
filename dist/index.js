@@ -46,7 +46,8 @@ function getInputs() {
         basePaths: core.getInput(modals_1.INPUTS.basePaths),
         includedGlob: core.getInput(modals_1.INPUTS.includedGlob),
         debugShowPaths: core.getBooleanInput(modals_1.INPUTS.debugShowPaths),
-        skipLabels: core.getBooleanInput(modals_1.INPUTS.skipLabels)
+        skipLabels: core.getBooleanInput(modals_1.INPUTS.skipLabels),
+        maxLabels: parseInt(core.getInput(modals_1.INPUTS.maxLabels), 10)
     };
     core.debug(`Inputs: ${(0, util_1.inspect)(inputs)}`);
     return inputs;
@@ -200,7 +201,7 @@ function run() {
             const tokenSets = (0, utils_1.getTokenSets)(filteredPaths, pattern, inputs.layers, inputs.debugShowPaths);
             core.setOutput('paths', Array.from(tokenSets[0]));
             // only get sets for labels
-            const labels = (0, utils_1.getLabels)(inputs.prefixes, inputs.delimiter, tokenSets.slice(1));
+            const labels = (0, utils_1.getLabels)(inputs.prefixes, inputs.delimiter, tokenSets.slice(1), inputs.maxLabels);
             core.setOutput('labels', labels);
             if (!labels.length) {
                 core.warning('No labels found');
@@ -239,6 +240,7 @@ var INPUTS;
     INPUTS["debugShowPaths"] = "debugShowPaths";
     INPUTS["skipLabels"] = "skipLabels";
     INPUTS["includedGlob"] = "includedGlob";
+    INPUTS["maxLabels"] = "maxLabels";
 })(INPUTS || (exports.INPUTS = INPUTS = {}));
 
 
@@ -334,7 +336,7 @@ function getTokenSets(filePaths, pattern, layers, debugShowPaths) {
     }
     return labelTokenSets;
 }
-function getLabels(prefixes, delimiter, labelTokenSets) {
+function getLabels(prefixes, delimiter, labelTokenSets, maxLabels) {
     let prefixArray = labelTokenSets.map(() => '');
     if (prefixes !== '') {
         if (prefixArray.length !== labelTokenSets.length) {
@@ -355,7 +357,11 @@ function getLabels(prefixes, delimiter, labelTokenSets) {
         const labelTokens = Array.from(labelTokenSet);
         return labelTokens.map(labelToken => `${prefix}${labelToken}`.trim());
     });
-    return labels.flat();
+    const allLabels = labels.flat();
+    core.startGroup('🏷️Labels');
+    core.debug(`labels: ${(0, util_1.inspect)(allLabels)}`);
+    core.endGroup();
+    return allLabels.slice(0, maxLabels);
 }
 
 

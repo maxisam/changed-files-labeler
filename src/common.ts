@@ -12,7 +12,8 @@ export function getInputs(): IInputs {
         basePaths: core.getInput(INPUTS.basePaths),
         includedGlob: core.getInput(INPUTS.includedGlob),
         debugShowPaths: core.getBooleanInput(INPUTS.debugShowPaths),
-        skipLabels: core.getBooleanInput(INPUTS.skipLabels)
+        skipLabels: core.getBooleanInput(INPUTS.skipLabels),
+        maxLabels: parseInt(core.getInput(INPUTS.maxLabels), 10)
     };
     core.debug(`Inputs: ${inspect(inputs)}`);
     return inputs;
