@@ -61,12 +61,18 @@ test('getTokenSets with 2 paths and 1 laypers, all different paths', () => {
 
 test('getLabels', () => {
     const labelTokenSets = [new Set(['foo1', 'foo2']), new Set(['bar', 'baz'])];
-    const result = getLabels('cat|proj', ':', labelTokenSets);
+    const result = getLabels('cat|proj', ':', labelTokenSets, 10);
     expect(result).toEqual(['cat:foo1', 'cat:foo2', 'proj:bar', 'proj:baz']);
 });
 
 test('getLabels with skip', () => {
     const labelTokenSets = [new Set(['foo1', 'foo2']), new Set(['bar', 'baz'])];
-    const result = getLabels('cat|skip', ':', labelTokenSets);
+    const result = getLabels('cat|skip', ':', labelTokenSets, 10);
+    expect(result).toEqual(['cat:foo1', 'cat:foo2']);
+});
+
+test('getLabels with max 2', () => {
+    const labelTokenSets = [new Set(['foo1', 'foo2']), new Set(['bar', 'baz'])];
+    const result = getLabels('cat|proj', ':', labelTokenSets, 2);
     expect(result).toEqual(['cat:foo1', 'cat:foo2']);
 });
